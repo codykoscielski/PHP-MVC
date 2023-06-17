@@ -6,8 +6,8 @@
      */
 
     class Core {
-        protected string $currentController = 'Pages';
-        protected string $currentMethod = 'index';
+        protected string|object $currentController = 'Pages';
+        protected string|object $currentMethod = 'index';
         protected array $params = [];
 
 
@@ -29,6 +29,21 @@
             //Ex: $pages = new Pages
             $this->currentController = new $this->currentController;
 
+            //Check for second part of URL (method)
+            if(isset($url[1])) {
+                //Check to see if the method is in the controller
+                if(method_exists($this->currentController, $url[1])){
+                    $this->currentMethod = $url[1];
+                    //Unset 1 index
+                    unset($url[1]);
+                }
+            }
+
+            //Get params
+            $this->params = $url ? array_values($url) : [];
+
+            //Call a callback with array of params
+            call_user_func_array([$this->currentController, $this->currentMethod], $this->params);
         }
 
         public function getURL() {
