@@ -1,7 +1,7 @@
 <?php
     class Pages extends Controller {
         public function __construct() {
-            //Will use this later
+            $this->postModel = $this->model('Post');
         }
 
         public function index(): void {
