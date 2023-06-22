@@ -8,12 +8,11 @@
      * return rows and results
      */
 
-    class Database {
+    #[AllowDynamicProperties] class Database {
         private $host = DB_HOST;
         private $user = DB_USER;
         private $pass = DB_PASS;
         private $dbname = DB_NAME;
-
         //The database handler when creating a prepared statement
         private $dbh;
         //The statement
@@ -30,7 +29,7 @@
 
             //Create new PDO
             try {
-                $this->dns = new PDO($dsn, $this->user, $this->pass, $options);
+                $this->dsn = new PDO($dsn, $this->user, $this->pass, $options);
             } catch (PDOException $e) {
                 $this->error = $e->getMessage();
                 echo $this->error;
