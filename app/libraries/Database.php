@@ -35,4 +35,14 @@
                 echo $this->error;
             }
         }
+
+        //Prepare statement with query
+        public function query($sql) {
+            $this->stmt = $this->dbh->prepare($sql);
+        }
+
+        //Bind Values
+        public function bind($param, $value, $type = null) {
+            
+        }
     }
