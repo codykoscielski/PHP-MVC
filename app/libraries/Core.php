@@ -15,8 +15,10 @@
             //print_r($this->getURL());
             //Get the URL
             $url = $this->getURL();
+            $newURL= $url ?? '';
+
             //Look into controllers for first value
-            if(file_exists('../app/controllers/' . ucwords($url[0]) . '.php')) {
+            if(file_exists('../app/controllers/' . ucwords($newURL[0]) . '.php')) {
                 //If exists, then set as controllers
                 $this->currentController = ucwords($url[0]);
                 //unset 0 index
