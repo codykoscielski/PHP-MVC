@@ -2,14 +2,12 @@
     class Pages extends Controller {
         private $postModel;
         public function __construct() {
-            $this->postModel = $this->model('Post');
+
         }
 
         public function index(): void {
-            $posts = $this->postModel->getPosts();
             $data = [
                 'title' => 'Welcome',
-                'posts' => $posts
             ];
 
 
